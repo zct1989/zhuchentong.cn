@@ -22,11 +22,20 @@ jobs:
       - name: Build
         run: |
           npm run build
-      - name: Deploy static to Tencent CloudBase
-        id: deployStatic
-        uses: TencentCloudBase/cloudbase-action@v1.1.1
+      - name: Deploy(Upload COS)
+        uses: zkqiang/tencent-cos-action@v0.1.0
         with:
-          secretId: ${{ secrets.SECRET_ID }}
-          secretKey: ${{ secrets.SECRET_KEY }}
-          envId: ${{ secrets.ENV_ID }}
-          staticSrcPath: public
+          args: delete -r -f / && upload -r ./dist/ /
+          secret_id: ${{ secrets.SECRET_ID }}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          bucket: ${{ secrets.BUCKET }}
+          region: ${{ secrets.REGION }}
+
+      #- name: Deploy static to Tencent CloudBase
+           #   id: deployStatic
+           #   uses: TencentCloudBase/cloudbase-action@v1.1.1
+           #   with:
+           #     secretId: ${{ secrets.SECRET_ID }}
+           #     secretKey: ${{ secrets.SECRET_KEY }}
+           #     envId: ${{ secrets.ENV_ID }}
+           #     staticSrcPath: public
