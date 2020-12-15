@@ -20,7 +20,7 @@ jobs:
         uses: JakubMosakowski/secret-into-file-action@v1.0.0
         with:
           secret: ${{ secrets.ENV_ID }}
-        #   passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.ENV_ID }}
           filename: "file.txt"
       # - name: Install
       #   run: |
