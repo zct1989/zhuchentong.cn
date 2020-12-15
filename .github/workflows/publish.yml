@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: output
-        uses: JakubMosakowski/secret-into-file-action@v1.0.0
+        uses: jwsi/secret-parser@v1
         with:
-          secret: ${{ secrets.ENV_ID }}
-          passphrase: ${{ secrets.ENV_ID }}
-          filename: "file.txt"
+          filename: test.json
+          secret-name: important_value
+          secret-value: ${{ secrets.ENV_ID }}
       # - name: Install
       #   run: |
       #     npm install
