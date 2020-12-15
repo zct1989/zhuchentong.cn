@@ -23,9 +23,14 @@ jobs:
 
       - name: Printenv
         env:
-          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-        run: |
-          printenv
+          DJANGO_SECRET_KEY: ${{ secrets.ENV_ID }}
+        run: printenv
+      # - name: Install
+      #   run: |
+      #     npm install
+      # - name: Build
+      #   run: |
+      #     npm run build
       # - name: Deploy(Upload COS)
       #   uses: zkqiang/tencent-cos-action@v0.1.0
       #   with:
@@ -35,7 +40,7 @@ jobs:
       #     bucket: ${{ secrets.BUCKET }}
       #     region: ${{ secrets.REGION }}
 
-      # - name: Deploy static to Tencent CloudBase
+      #- name: Deploy static to Tencent CloudBase
       #   id: deployStatic
       #   uses: TencentCloudBase/cloudbase-action@v1.1.1
       #   with:
