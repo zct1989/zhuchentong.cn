@@ -16,12 +16,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: |
-          npm install
-      - name: Build
-        run: |
-          npm run build
+      on: push
+
+    #  - uses: secrethub/actions/env-export@v0.1.0
+    #     env:
+    #       SECRETHUB_CREDENTIAL: ${{ secrets.ENV_ID }}
+    #       SLACK_WEBHOOK: secrethub://company/app/slack/webhook
+      - name: Print environment with masked secrets
+        run: printenv
       # - name: Deploy(Upload COS)
       #   uses: zkqiang/tencent-cos-action@v0.1.0
       #   with:
@@ -31,11 +33,11 @@ jobs:
       #     bucket: ${{ secrets.BUCKET }}
       #     region: ${{ secrets.REGION }}
 
-      - name: Deploy static to Tencent CloudBase
-        id: deployStatic
-        uses: TencentCloudBase/cloudbase-action@v1.1.1
-        with:
-          secretId: ${{ secrets.SECRET_ID }}
-          secretKey: ${{ secrets.SECRET_KEY }}
-          envId: ${{ secrets.ENV_ID }}
-          staticSrcPath: public
+      # - name: Deploy static to Tencent CloudBase
+      #   id: deployStatic
+      #   uses: TencentCloudBase/cloudbase-action@v1.1.1
+      #   with:
+      #     secretId: ${{ secrets.SECRET_ID }}
+      #     secretKey: ${{ secrets.SECRET_KEY }}
+      #     envId: ${{ secrets.ENV_ID }}
+      #     staticSrcPath: public
