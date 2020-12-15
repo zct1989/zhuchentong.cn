@@ -16,8 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-     - name: Install packages
-      run: echo ${{ secrets.ENV_ID }}
+      - name: Install packages
+        run: echo ${{ secrets.ENV_ID }}
       # - name: Install
       #   run: |
       #     npm install
