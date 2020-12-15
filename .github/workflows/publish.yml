@@ -16,14 +16,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      on: push
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
+        with:
+          MY_ENV_VAR: "my value"
 
-    #  - uses: secrethub/actions/env-export@v0.1.0
-    #     env:
-    #       SECRETHUB_CREDENTIAL: ${{ secrets.ENV_ID }}
-    #       SLACK_WEBHOOK: secrethub://company/app/slack/webhook
-      - name: Print environment with masked secrets
-        run: printenv
+      - name: Printenv
+        env:
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+        run: |
+          printenv
       # - name: Deploy(Upload COS)
       #   uses: zkqiang/tencent-cos-action@v0.1.0
       #   with:
