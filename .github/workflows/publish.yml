@@ -16,12 +16,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: output
-        uses: jwsi/secret-parser@v1
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
         with:
-          filename: test.json
-          secret-name: important_value
-          secret-value: ${{ secrets.ENV_ID }}
+          ENV_ANOTHER_KEY: ${{ secrets.ENV_ID }}
       # - name: Install
       #   run: |
       #     npm install
