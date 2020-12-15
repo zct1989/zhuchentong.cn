@@ -16,11 +16,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Printenv
-        env:
-          DJANGO_SECRET_KEY: ${{ secrets.ENV_ID }}
-        run: printenv
+      - name: output
+        uses: JakubMosakowski/secret-into-file-action@v1.0.0
+        with:
+          secret: ${{ secrets.ENV_ID }}
+        #   passphrase: ${{ secrets.PASSPHRASE }}
+          filename: "file.txt"
       # - name: Install
       #   run: |
       #     npm install
@@ -30,7 +31,7 @@ jobs:
       # - name: Deploy(Upload COS)
       #   uses: zkqiang/tencent-cos-action@v0.1.0
       #   with:
-      #     args: delete -f -r / && upload -r ./public/ /
+      #     args: delete -f -r / && upload -r ./ /
       #     secret_id: ${{ secrets.SECRET_ID }}
       #     secret_key: ${{ secrets.SECRET_KEY }}
       #     bucket: ${{ secrets.BUCKET }}
