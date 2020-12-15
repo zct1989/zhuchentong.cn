@@ -16,20 +16,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: |
-          npm install
-      - name: Build
-        run: |
-          npm run build
-      - name: Deploy(Upload COS)
-        uses: zkqiang/tencent-cos-action@v0.1.0
-        with:
-          args: delete -f -r / && upload -r ./public/ /
-          secret_id: ${{ secrets.SECRET_ID }}
-          secret_key: ${{ secrets.SECRET_KEY }}
-          bucket: ${{ secrets.BUCKET }}
-          region: ${{ secrets.REGION }}
+     - name: Install packages
+      run: echo ${{ secrets.ENV_ID }}
+      # - name: Install
+      #   run: |
+      #     npm install
+      # - name: Build
+      #   run: |
+      #     npm run build
+      # - name: Deploy(Upload COS)
+      #   uses: zkqiang/tencent-cos-action@v0.1.0
+      #   with:
+      #     args: delete -f -r / && upload -r ./public/ /
+      #     secret_id: ${{ secrets.SECRET_ID }}
+      #     secret_key: ${{ secrets.SECRET_KEY }}
+      #     bucket: ${{ secrets.BUCKET }}
+      #     region: ${{ secrets.REGION }}
 
       #- name: Deploy static to Tencent CloudBase
            #   id: deployStatic
