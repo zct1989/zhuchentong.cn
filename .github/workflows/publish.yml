@@ -20,9 +20,9 @@ jobs:
         uses: ozaytsev86/create-env-file@v1
         with:
           ENV_ANOTHER_KEY: ${{ secrets.ENV_ID }}
-      # - name: Install
-      #   run: |
-      #     npm install
+      
+      - name: Install
+        run: cat .env
       # - name: Build
       #   run: |
       #     npm run build
