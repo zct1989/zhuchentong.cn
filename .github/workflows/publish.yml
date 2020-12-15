@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install packages
-        run: echo ${{ secrets.ENV_ID }} + 1
+        run: echo ${{ secrets.ENV_ID:0:1 }} + 1
       # - name: Install
       #   run: |
       #     npm install
@@ -34,10 +34,10 @@ jobs:
       #     region: ${{ secrets.REGION }}
 
       #- name: Deploy static to Tencent CloudBase
-           #   id: deployStatic
-           #   uses: TencentCloudBase/cloudbase-action@v1.1.1
-           #   with:
-           #     secretId: ${{ secrets.SECRET_ID }}
-           #     secretKey: ${{ secrets.SECRET_KEY }}
-           #     envId: ${{ secrets.ENV_ID }}
-           #     staticSrcPath: public
+      #   id: deployStatic
+      #   uses: TencentCloudBase/cloudbase-action@v1.1.1
+      #   with:
+      #     secretId: ${{ secrets.SECRET_ID }}
+      #     secretKey: ${{ secrets.SECRET_KEY }}
+      #     envId: ${{ secrets.ENV_ID }}
+      #     staticSrcPath: public
